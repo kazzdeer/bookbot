@@ -1,5 +1,5 @@
-def main():
-    with open("books/frankenstein.txt") as f:
+def main(file_path):
+    with open(file_path) as f:
         file_contents = f.read()
     
     return file_contents
@@ -17,9 +17,20 @@ def letter_count(book_as_string):
     
     return letter_dict
 
+def report(file_path, words, letters):
+    alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+    print(f"--- Begin report of {file_path} ---")
+    print(f"{words} words found in the document")
+    print()
+    for letter, count in letters.items():
+        if letter in alphabet:
+            print(f"The '{letter}' character was found {count} times")
+    print("--- End report ---")
+    
 
 if __name__ == "__main__":
-    book = main()
+    file_path = 'books/frankenstein.txt'
+    book = main(file_path)
     words = word_count(book)
     letters = letter_count(book)
-    print(letters)
+    report(file_path, words, letters)
